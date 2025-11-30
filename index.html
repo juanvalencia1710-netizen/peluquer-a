@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>BarberShop Colombia - Reserva tu Turno</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="animated-bg"></div>
+
+<div class="container">
+    <header>
+        <h1>💈 BARBERSHOP COLOMBIA 💈</h1>
+        <div class="flag-colors">
+            <div class="yellow"></div>
+            <div class="blue"></div>
+            <div class="red"></div>
+        </div>
+        <p>¡EL MEJOR CORTE, EL MEJOR ESTILO!</p>
+    </header>
+
+    <!-- GALERÍA -->
+    <div class="gallery">
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=600" alt="Corte moderno">
+            <div class="gallery-overlay"><div class="gallery-title">Cortes Modernos</div></div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=600" alt="Barba">
+            <div class="gallery-overlay"><div class="gallery-title">Barba Profesional</div></div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=600" alt="Clásico">
+            <div class="gallery-overlay"><div class="gallery-title">Estilo Clásico</div></div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600" alt="Fade">
+            <div class="gallery-overlay"><div class="gallery-title">Fade & Diseños</div></div>
+        </div>
+    </div>
+
+    <!-- SERVICIOS -->
+    <div class="main-content">
+        <div class="card">
+            <h2>🎯 NUESTROS SERVICIOS</h2>
+
+            <div class="services">
+                <div class="service-item" data-service="corte" data-price="25000">
+                    <img src="https://images.unsplash.com/photo-1622286342621-4bd786c2447c?w=200&h=200&fit=crop" class="service-img" alt="">
+                    <div class="service-info">
+                        <div class="service-name">Corte de Cabello</div>
+                        <div class="service-desc">Corte personalizado con estilo</div>
+                    </div>
+                    <div class="service-price">$25.000</div>
+                </div>
+
+                <div class="service-item" data-service="barba" data-price="18000">
+                    <img src="https://images.unsplash.com/photo-1599351431202-1e0f0137899a?w=200&h=200&fit=crop" class="service-img" alt="">
+                    <div class="service-info">
+                        <div class="service-name">Arreglo de Barba</div>
+                        <div class="service-desc">Perfilado y diseño profesional</div>
+                    </div>
+                    <div class="service-price">$18.000</div>
+                </div>
+
+                <div class="service-item" data-service="combo" data-price="38000">
+                    <img src="https://images.unsplash.com/photo-1621605815971-fbc98d665033?w=200&h=200&fit=crop" class="service-img" alt="">
+                    <div class="service-info">
+                        <div class="service-name">Combo Completo</div>
+                        <div class="service-desc">Corte + Barba + Cejas</div>
+                    </div>
+                    <div class="service-price">$38.000</div>
+                </div>
+
+                <div class="service-item" data-service="cejas" data-price="8000">
+                    <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=200&h=200&fit=crop" class="service-img" alt="">
+                    <div class="service-info">
+                        <div class="service-name">Cejas</div>
+                        <div class="service-desc">Perfilado de cejas</div>
+                    </div>
+                    <div class="service-price">$8.000</div>
+                </div>
+
+                <div class="service-item" data-service="tintura" data-price="35000">
+                    <img src="https://images.unsplash.com/photo-1605497788044-5a32c7078486?w=200&h=200&fit=crop" class="service-img" alt="">
+                    <div class="service-info">
+                        <div class="service-name">Tintura/Color</div>
+                        <div class="service-desc">Aplicación de color profesional</div>
+                    </div>
+                    <div class="service-price">$35.000</div>
+                </div>
+
+                <div class="service-item" data-service="kids" data-price="20000">
+                    <img src="https://images.unsplash.com/photo-1581349485608-9469926a8e5e?w=200&h=200&fit=crop" class="service-img" alt="">
+                    <div class="service-info">
+                        <div class="service-name">Corte Infantil</div>
+                        <div class="service-desc">Especial para niños</div>
+                    </div>
+                    <div class="service-price">$20.000</div>
+                </div>
+            </div>
+
+            <div class="summary">
+                <h3>RESUMEN</h3>
+                <div id="selectedServices">
+                    <p style="color:#999;">No has seleccionado servicios</p>
+                </div>
+                <div class="summary-item">
+                    <span>TOTAL:</span>
+                    <span id="totalPrice">$0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="card">
+            <h2>📅 RESERVA TU TURNO</h2>
+
+            <form id="reservaForm">
+                <div class="form-group">
+                    <label>👤 Nombre Completo *</label>
+                    <input type="text" id="nombre" required>
+                </div>
+
+                <div class="form-group">
+                    <label>📱 Teléfono *</label>
+                    <input type="tel" id="telefono" required>
+                </div>
+
+                <div class="form-group">
+                    <label>📧 Correo Electrónico</label>
+                    <input type="email" id="email">
+                </div>
+
+                <div class="form-group">
+                    <label>📅 Fecha *</label>
+                    <input type="date" id="fecha" required>
+                </div>
+
+                <div class="form-group">
+                    <label>⏰ Hora Disponible *</label>
+                    <div class="time-slots" id="timeSlots">
+                        <div class="time-slot" data-time="09:00">09:00 AM</div>
+                        <div class="time-slot" data-time="10:00">10:00 AM</div>
+                        <div class="time-slot" data-time="11:00">11:00 AM</div>
+                        <div class="time-slot" data-time="14:00">02:00 PM</div>
+                        <div class="time-slot" data-time="15:00">03:00 PM</div>
+                        <div class="time-slot" data-time="16:00">04:00 PM</div>
+                        <div class="time-slot" data-time="17:00">05:00 PM</div>
+                        <div class="time-slot" data-time="18:00">06:00 PM</div>
+                        <div class="time-slot" data-time="19:00">07:00 PM</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>🏙️ Ciudad *</label>
+                    <select id="ciudad" required>
+                        <option value="">Selecciona tu ciudad</option>
+                        <option>Bogotá</option>
+                        <option>Medellín</option>
+                        <option>Cali</option>
+                        <option>Barranquilla</option>
+                        <option>Cartagena</option>
+                        <option>Bucaramanga</option>
+                        <option>Pereira</option>
+                        <option>Manizales</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>💬 Comentarios Adicionales</label>
+                    <textarea id="comentarios" rows="3"></textarea>
+                </div>
+
+                <!-- EXPLÍCITO: type="submit" para asegurar comportamiento -->
+                <button type="submit" class="btn-submit">CONFIRMAR RESERVA 🚀</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- RESERVAS -->
+    <div class="reservations-section">
+        <h2>📋 RESERVAS REGISTRADAS</h2>
+        <div id="reservationsList">
+            <p style="text-align:center; color:rgba(255,255,255,0.5); padding:40px;">
+                No hay reservas registradas aún. ¡Sé el primero en reservar!
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal" id="successModal">
+    <div class="modal-content">
+        <div class="success-icon">✅</div>
+        <h2>¡RESERVA CONFIRMADA!</h2>
+        <p>Tu turno ha sido agendado exitosamente.</p>
+
+        <div style="margin:20px; padding:15px; background:rgba(252,209,22,0.1); border-radius:12px;">
+            <p style="color:#FCD116;">📱 Se abrirá WhatsApp con tu confirmación</p>
+            <p style="color:#FCD116;">📧 Recibirás un correo (si lo proporcionaste)</p>
+            <p style="color:#FCD116;">🔔 La barbería será notificada</p>
+        </div>
+
+        <button class="btn-close" onclick="closeModal()">ENTENDIDO</button>
+    </div>
+</div>
+
+<!-- SUPABASE (CDN) -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ========== Conexión Supabase (usa tus valores) ========== */
+const SUPABASE_URL = "https://xdoqjrxlhhpatxwkyapz.supabase.co";
+const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhkb3FqcnhsaGhwYXR4d2t5YXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMTAxMzEsImV4cCI6MjA3OTU4NjEzMX0.oALPdqpLGi1x9ZzIADCa8LY8ddwFSEph64Rg34l35NE";
+
+// inicializa cliente y usa un nombre distinto para evitar shadowing
+const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+</script>
+
+<!-- SCRIPT FUNCIONAL (mínimos cambios, variables DOM seguras) -->
+<script>
+/* ----------------------------- SELECTORS (referencias seguras) ----------------------------- */
+const selectedServicesDiv = document.getElementById("selectedServices");
+const totalPriceSpan = document.getElementById("totalPrice");
+const form = document.getElementById("reservaForm");
+const reservationsList = document.getElementById("reservationsList");
+
+// inputs
+const inputNombre = document.getElementById("nombre");
+const inputTelefono = document.getElementById("telefono");
+const inputEmail = document.getElementById("email");
+const inputFecha = document.getElementById("fecha");
+const selectCiudad = document.getElementById("ciudad");
+const textareaComentarios = document.getElementById("comentarios");
+
+/* ----------------------------- SELECCIÓN DE SERVICIOS ----------------------------- */
+let selected = {};
+document.querySelectorAll(".service-item").forEach(item => {
+    item.addEventListener("click", () => {
+        const name = item.dataset.service;
+        const price = parseInt(item.dataset.price, 10) || 0;
+
+        if (selected[name]) {
+            delete selected[name];
+            item.classList.remove("selected");
+        } else {
+            selected[name] = price;
+            item.classList.add("selected");
+        }
+
+        updateSummary();
+    });
+});
+
+function updateSummary() {
+    const entries = Object.entries(selected);
+    if (entries.length === 0) {
+        selectedServicesDiv.innerHTML = `<p style="color:#999;">No has seleccionado servicios</p>`;
+        totalPriceSpan.textContent = "$0";
+        return;
+    }
+
+    selectedServicesDiv.innerHTML = entries
+        .map(([name, price]) => `<p>• ${name} - $${price.toLocaleString()}</p>`)
+        .join("");
+
+    const total = entries.reduce((sum, [, price]) => sum + price, 0);
+    totalPriceSpan.textContent = "$" + total.toLocaleString();
+}
+
+/* ----------------------------- HORARIOS ----------------------------- */
+let selectedTime = null;
+document.querySelectorAll(".time-slot").forEach(slot => {
+    slot.addEventListener("click", () => {
+        document.querySelectorAll(".time-slot").forEach(s => s.classList.remove("active"));
+        slot.classList.add("active");
+        selectedTime = slot.dataset.time;
+    });
+});
+
+/* ----------------------------- GUARDAR EN SUPABASE ----------------------------- */
+async function saveReservationToSupabase(reserva) {
+    try {
+        const { data, error } = await supabaseClient
+            .from("reservas")
+            .insert([reserva]);
+
+        if (error) {
+            // muestra error pero no detiene la experiencia del usuario
+            console.error("Error guardando en Supabase:", error);
+            alert("⚠️ No se pudo guardar la reserva en la base de datos: " + error.message);
+            return { success: false, error };
+        }
+
+        return { success: true, data };
+    } catch (err) {
+        console.error("Excepción guardando en Supabase:", err);
+        alert("⚠️ Error inesperado al guardar la reserva.");
+        return { success: false, error: err };
+    }
+}
+
+/* ----------------------------- FORMULARIO ----------------------------- */
+form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!selectedTime) {
+        alert("Selecciona una hora.");
+        return;
+    }
+    if (Object.keys(selected).length === 0) {
+        alert("Selecciona al menos un servicio.");
+        return;
+    }
+
+    const reserva = {
+        nombre: inputNombre.value.trim(),
+        telefono: inputTelefono.value.trim(),
+        email: inputEmail.value.trim(),
+        fecha: inputFecha.value,
+        hora: selectedTime,
+        ciudad: selectCiudad.value,
+        comentarios: textareaComentarios.value.trim(),
+        servicios: Object.keys(selected),
+        total: totalPriceSpan.textContent
+    };
+
+    // guardamos en supabase (intento)
+    await saveReservationToSupabase(reserva);
+
+    // mostramos localmente y abrimos WhatsApp
+    addReservationLocal(reserva);
+    openWhatsApp(reserva);
+    showModal();
+
+    // reset UI
+    form.reset();
+    selected = {};
+    selectedTime = null;
+    document.querySelectorAll(".service-item").forEach(i => i.classList.remove("selected"));
+    document.querySelectorAll(".time-slot").forEach(s => s.classList.remove("active"));
+    updateSummary();
+});
+
+/* ----------------------------- MOSTRAR RESERVAS EN PANTALLA ----------------------------- */
+function addReservationLocal(r) {
+    if (reservationsList.children.length === 1) {
+        reservationsList.innerHTML = "";
+    }
+
+    const div = document.createElement("div");
+    div.className = "reservation-item";
+    div.innerHTML = `
+        <p><strong>${escapeHtml(r.nombre)}</strong> - ${escapeHtml(r.ciudad)}</p>
+        <p>${escapeHtml(r.fecha)} / ${escapeHtml(r.hora)}</p>
+        <p>Servicios: ${escapeHtml(r.servicios.join(", "))}</p>
+        <p>Total: ${escapeHtml(r.total)}</p>
+    `;
+    reservationsList.appendChild(div);
+}
+
+/* ----------------------------- WHATSAPP ----------------------------- */
+function openWhatsApp(r) {
+    // si el número trae signos o espacios los limpiamos
+    const phone = (r.telefono || "").replace(/\D/g, "");
+    const base = "https://wa.me/57";
+    const message = `
+¡Hola! Quiero confirmar mi reserva:
+
+👤 Nombre: ${r.nombre}
+📱 Teléfono: ${r.telefono}
+📅 Fecha: ${r.fecha}
+⏰ Hora: ${r.hora}
+🏙️ Ciudad: ${r.ciudad}
+💈 Servicios: ${r.servicios.join(", ")}
+💵 Total: ${r.total}
+
+${r.comentarios ? "💬 Comentarios: " + r.comentarios : ""}
+    `;
+    const url = base + phone + "?text=" + encodeURIComponent(message);
+    window.open(url, "_blank");
+}
+
+/* ----------------------------- MODAL ----------------------------- */
+function showModal() {
+    document.getElementById("successModal").style.display = "flex";
+}
+function closeModal() {
+    document.getElementById("successModal").style.display = "none";
+}
+
+/* ----------------------------- UTIL ----------------------------- */
+function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+</script>
+
+</body>
+</html>

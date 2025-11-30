@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal de Acceso</title>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #0a0a0a;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FCD116 0%, #CE1126 50%, #003893 100%);
+            background-size: 400% 400%;
+            animation: gradientShift 15s ease infinite;
+            opacity: 0.15;
+            z-index: -1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .portal-container {
+            max-width: 500px;
+            margin: 80px auto;
+            background: rgba(20, 20, 20, 0.85);
+            padding: 40px 35px;
+            border-radius: 25px;
+            border: 2px solid rgba(252, 209, 22, 0.3);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6),
+                        0 0 40px rgba(252, 209, 22, 0.3);
+            backdrop-filter: blur(12px);
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3.5em;
+            background: linear-gradient(135deg, #FCD116 0%, #CE1126 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(252, 209, 22, 0.4);
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+        }
+
+        label {
+            color: #FCD116;
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        .input-box {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            border: 2px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.05);
+            color: white;
+            font-size: 1em;
+            font-family: 'Poppins', sans-serif;
+            transition: 0.3s;
+        }
+
+        .input-box:focus {
+            border-color: #FCD116;
+            background: rgba(252, 209, 22, 0.08);
+            box-shadow: 0 0 20px rgba(252, 209, 22, 0.3);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #FCD116, #CE1126);
+            color: #0a0a0a;
+            border-radius: 14px;
+            font-size: 1.3em;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 35px rgba(252, 209, 22, 0.6);
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="animated-bg"></div>
+
+    <div class="portal-container">
+        <h2>PORTAL DE INGRESO</h2>
+
+        <form id="registroForm">
+            <label>👤 Nombre completo</label>
+            <input type="text" id="nombre" class="input-box" placeholder="Tu nombre" required>
+
+            <label>📧 Correo electrónico</label>
+            <input type="email" id="correo" class="input-box" placeholder="correo@ejemplo.com" required>
+
+            <label>📱 Teléfono</label>
+            <input type="tel" id="telefono" class="input-box" placeholder="Tu número" required>
+
+            <label>🔒 Contraseña</label>
+            <input type="password" id="pass1" class="input-box" placeholder="Ingresa tu contraseña" required>
+
+            <label>🔐 Confirmar contraseña</label>
+            <input type="password" id="pass2" class="input-box" placeholder="Repite tu contraseña" required>
+
+            <button type="submit">Ingresar ✨</button>
+        </form>
+    </div>
+
+<!-- 🔥 LIBRERÍA SUPABASE -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+// ⚡ REEMPLAZA ESTOS DATOS CON LOS TUYOS
+const supabaseUrl = "https://xdoqjrxlhhpatxwkyapz.supabase.co";
+const supabaseKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inhkb3FqcnhsaGhwYXR4d2t5YXB6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjQwMTAxMzEsImV4cCI6MjA3OTU4NjEzMX0.oALPdqpLGi1x9ZzIADCa8LY8ddwFSEph64Rg34l35NE";
+
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
+
+document.getElementById("registroForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const nombre = document.getElementById("nombre").value.trim();
+    const correo = document.getElementById("correo").value.trim();
+    const telefono = document.getElementById("telefono").value.trim();
+    const pass1 = document.getElementById("pass1").value.trim();
+    const pass2 = document.getElementById("pass2").value.trim();
+
+    if (pass1 !== pass2) {
+        alert("⚠️ Las contraseñas no coinciden.");
+        return;
+    }
+
+    // 📌 INSERTAR REGISTRO EN LA TABLA "usuarios"
+    const { data, error } = await supabaseClient
+        .from("usuarios")
+        .insert({
+            nombre_completo: nombre,
+            correo: correo,
+            telefono: telefono,
+            contraseña: pass1
+        });
+
+    if (error) {
+        alert("❌ Error: " + error.message);
+        console.error(error);
+        return;
+    }
+
+    alert("✨ Registro completado exitosamente ✨");
+
+    window.location.href = "index.html";
+});
+</script>
+
+</body>
+</html>
